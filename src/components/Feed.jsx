@@ -31,7 +31,7 @@ const Feed = () => {
           variant="body2"
           sx={{ mt: 1.5, color: "#fff" }}
         >
-          {" "}
+          
           &copy; 2023 Beauty Supply 🫦
         </Typography>
       </Box>
