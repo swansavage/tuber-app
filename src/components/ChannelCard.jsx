@@ -1,11 +1,10 @@
 import { Box, Typography, Card, CardContent, CardMedia } from '@mui/material';
-import { CheckCircle } from '@mui/icons-material';
+import { CenterFocusStrong, CheckCircle } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 
 import { demoProfilePicture } from '../utils/constants';
 
 const ChannelCard = ({ channelDetail, marginTop }) => {
-	console.log(channelDetail);
 	return (
 		<Box
 			sx={{
@@ -32,19 +31,20 @@ const ChannelCard = ({ channelDetail, marginTop }) => {
 				>
 					<CardMedia
 						image={
-							channelDetail?.snippet?.thumbnails?.default?.url ||
+							channelDetail?.snippet?.thumbnails?.high?.url ||
 							demoProfilePicture
 						}
 						alt={channelDetail?.snippet?.title}
 						sx={{
 							borderRadius: `50%`,
+							margin: '0 auto',
 							height: '180px',
 							width: '180px',
 							mb: 2,
 							border: '1px solid #e3e3e3',
 						}}
 					/>
-					<Typography variant="h6">
+					<Typography variant="h6" sx={{ width: 'auto' }}>
 						{channelDetail?.snippet?.title}
 						<CheckCircle sx={{ fontSize: 14, color: 'gray', ml: '5px' }} />
 					</Typography>
