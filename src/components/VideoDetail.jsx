@@ -17,23 +17,32 @@ const VideoDetail = () => {
 		);
 	}, [id]);
 
-	console.log(videoDetail);
-	return (
-		<Box minHeight="95vh">
-			<Stack direction={{ xs: 'col', md: 'row' }}>
-				<Box flex={1}>
-					<Box sx={{ width: '100%', position: 'sticky', top: '86px' }}>
-						<ReactPlayer
-							url={`https://www.youtube.com/watch?v=${id}`}
-							className="react-player"
-							controls
-						/>
-						<Typography>{videoDetail.snippet.title}</Typography>
+	if (videoDetail !== null) {
+		const {
+			snippet: { title },
+		} = videoDetail;
+
+		return (
+			<Box minHeight="95vh">
+				<Stack direction={{ xs: 'col', md: 'row' }}>
+					<Box flex={1}>
+						<Box sx={{ width: '100%', position: 'sticky', top: '86px' }}>
+							<ReactPlayer
+								url={`https://www.youtube.com/watch?v=${id}`}
+								className="react-player"
+								controls
+							/>
+							{videoDetail !== null && (
+								<Typography color="#FFF" variant="h5" fontWeight="bold" p={2}>
+									{title}
+								</Typography>
+							)}
+						</Box>
 					</Box>
-				</Box>
-			</Stack>
-		</Box>
-	);
+				</Stack>
+			</Box>
+		);
+	}
 };
 
 export default VideoDetail;
