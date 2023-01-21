@@ -19,7 +19,8 @@ const VideoDetail = () => {
 
 	if (videoDetail !== null) {
 		const {
-			snippet: { title },
+			snippet: { title, channelId, channelTitle },
+			statistics: { viewCount, likeCount },
 		} = videoDetail;
 
 		return (
@@ -32,11 +33,37 @@ const VideoDetail = () => {
 								className="react-player"
 								controls
 							/>
-							{videoDetail !== null && (
-								<Typography color="#FFF" variant="h5" fontWeight="bold" p={2}>
-									{title}
-								</Typography>
-							)}
+
+							<Typography color="#FFF" variant="h5" fontWeight="bold" p={2}>
+								{title}
+							</Typography>
+							<Stack
+								direction="row"
+								justifyContent="space-between"
+								sx={{ color: '#fff' }}
+								py={1}
+								px={2}
+							>
+								<Link to={`/channel/${channelId}`}>
+									<Typography
+										sx={{ typography: { sm: 'subtitle1', md: 'h6' } }}
+										color="#fff"
+									>
+										{channelTitle}
+										<CheckCircle
+											sx={{ fontSize: '12px', color: 'gray', ml: '5px' }}
+										/>
+									</Typography>
+								</Link>
+								<Stack direction="row" gap="20px" alignItems="center">
+									<Typography variant="body1" sx={{ opacity: 0.7 }}>
+										{parseInt(viewCount).toLocaleString()} views
+									</Typography>
+									<Typography variant="body1" sx={{ opacity: 0.7 }}>
+										{parseInt(likeCount).toLocaleString()} likes
+									</Typography>
+								</Stack>
+							</Stack>
 						</Box>
 					</Box>
 				</Stack>
